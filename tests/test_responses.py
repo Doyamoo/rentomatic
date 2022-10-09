@@ -5,6 +5,8 @@ from rentomatic.responses import (
     build_response_from_invalid_request,
 )
 from rentomatic.responses import ResponseSuccess
+from rentomatic.requests.room_list import RoomListInvalidRequest
+
 
 SUCCESS_VALUE = {"key": ["value1", "value2"]}
 GENERIC_RESPONSE_TYPE = "Response"
@@ -14,7 +16,7 @@ GENERIC_RESPONSE_MESSAGE = "This is a response"
 def test_response_success_is_true():
     response = ResponseSuccess(SUCCESS_VALUE)
 
-    assert bool(ResponseSuccess()) is True
+    assert bool(response) is True
 
 
 def test_response_failure_is_false():
@@ -22,7 +24,7 @@ def test_response_failure_is_false():
         GENERIC_RESPONSE_TYPE, GENERIC_RESPONSE_MESSAGE
     )
 
-    assert(response) is False
+    assert bool(response) is False
 
 
 def test_response_success_has_type_and_value():
