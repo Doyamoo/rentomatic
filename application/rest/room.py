@@ -1,17 +1,13 @@
 import json
 import os
-from urllib import response
 
-from flask import Blueprint, request, Response
+from flask import Blueprint, Response, request
 
-from rentomatic.repository.memrepo import MemRepo
 from rentomatic.repository.postgresrepo import PostgresRepo
-
-from rentomatic.use_cases.room_list import room_list_use_case
-from rentomatic.serializers.room import RoomJsonEncoder
 from rentomatic.requests.room_list import build_room_list_request
 from rentomatic.responses import ResponseTypes
-
+from rentomatic.serializers.room import RoomJsonEncoder
+from rentomatic.use_cases.room_list import room_list_use_case
 
 blueprint = Blueprint("room", __name__)
 
@@ -22,6 +18,14 @@ postgres_configration = {
     "POSTGRES_PORT": os.environ["POSTGRES_PORT"],
     "APPLICATION_DB": os.environ["APPLICATION_DB"],
 }
+
+# postgres_configration = {
+#     "POSTGRES_USER": "postgres",
+#     "POSTGRES_PASSWORD": "postgres",
+#     "POSTGRES_HOSTNAME": "localhost",
+#     "POSTGRES_PORT": "5433",
+#     "APPLICATION_DB": "application",
+# }
 
 
 STATUS_CODES = {
